@@ -1,10 +1,10 @@
 import React from 'react';
-import {NavigationBar} from '../components/index';
+import ResponsiveAppBar from '../components/CustomNavBar';
 
 function Home() {
   return (
     <div >
-      <NavigationBar/>
+      <ResponsiveAppBar/>
       Home
     </div>
   );
