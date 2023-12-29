@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Home, CampaignDetails, CreateCampaign, Profile} from './pages/index';
+import ResponsiveAppBar from './components/CustomNavBar';
 
 function App() {
   return (
     <div >
     <Router>
+      <ResponsiveAppBar/>
       <Routes>
         <Route path={'/'} element={<Home/>}></Route>
         <Route path={'/CampaignDetails'} element={<CampaignDetails/>}></Route>

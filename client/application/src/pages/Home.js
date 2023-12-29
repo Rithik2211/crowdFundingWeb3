@@ -1,10 +1,11 @@
 import React from 'react';
-import ResponsiveAppBar from '../components/CustomNavBar';
+import {useNavigate} from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate()
+
   return (
-    <div >
-      <ResponsiveAppBar/>
+    <div onClick={()=> navigate("/CampaignDetails")}>
       Home
     </div>
   );
