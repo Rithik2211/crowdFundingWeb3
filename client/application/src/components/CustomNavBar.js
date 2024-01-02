@@ -112,7 +112,7 @@ function ResponsiveAppBar() {
           </Search>
           </Box>
           {isConnected && <Box sx={{ flexGrow: 0.1 }}>
-          <Button variant="contained" color="secondary">Create Campaign</Button>
+          <Button variant="contained" color="success" onClick={()=> navigate("/CreateCampaign")}>Create Campaign</Button>
           </Box>}
           {
             isConnected ? 
@@ -143,7 +143,8 @@ function ResponsiveAppBar() {
                       setAnchorElUser(null);
                       navigate(nav.link);
                   }}>
-                    <Typography textAlign="center">{nav.name}</Typography>
+                    {nav.name ==="Logout" ? <Tooltip title={nav.name}><img src={nav.imgUrl} alt={nav.name} /></Tooltip> 
+                    : <Typography textAlign="center">{nav.name}</Typography>}
                   </MenuItem>
                 ))}
               </Menu>
