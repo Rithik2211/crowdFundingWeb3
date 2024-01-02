@@ -19,14 +19,15 @@ function CreateCampaign() {
     deadline : '',
     image : ''
   })
-  console.log("form",form)
+
   const handleFormFieldChange = (fieldName, e) => {
-    console.log("Field",fieldName,e);
     setForm({ ...form, [fieldName]: fieldName !== "deadline" ? e.target.value : `${e.$D}/${e.$M+1}/${e.$y}` });
   }
-
-  const handleSubmit = () => {
-
+// `${e.$D}/${e.$M+1}/${e.$y}`
+// e.$d.toString()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submission",form)
   }
   return (
     <div className='flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>
@@ -44,14 +45,15 @@ function CreateCampaign() {
           <img src={dollar} alt="money" className='w-[40px] h-[40px] object-contain' />
           <h4>You will get 100% of the raised amount!</h4>
         </div>
-        <div className='flex text-white space-around gap-[40px]' >
-          <TextField id="outlined-basic" label="Goal" placeholder="0.50 ETH" variant="outlined" sx={{width:"600px"}} onChange={(e)=>handleFormFieldChange("target",e)}/>
+        <div className='flex text-white sm:flex-row flex-col gap-[40px]' style={{justifyContent:"space-around"}}>
+          <TextField sx={{width:"400px"}} id="outlined-basic" label="Goal" placeholder="0.50 ETH" variant="outlined" onChange={(e)=>handleFormFieldChange("target",e)}/>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker sx={{width:"600px"}} label="End Date" onChange={(date) => { handleFormFieldChange("deadline", date) }}/>
+            <DatePicker sx={{width:"400px"}} label="End Date" onChange={(date) => { handleFormFieldChange("deadline", date) }}/>
           </LocalizationProvider>
+          <TextField sx={{width:"400px"}} id="outlined-basic" label="Campaign Image" placeholder="Place Your Image Url" variant="outlined"  onChange={(e)=>handleFormFieldChange("image",e)}/>
         </div> 
         <div className='flex justify-center items-center mt-[40px]'>
-          <Button variant="contained">Submit</Button>
+          <Button type="submit" variant="contained">Submit New Campaign</Button>
         </div>
       </form>
     </div>
