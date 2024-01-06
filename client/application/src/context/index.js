@@ -1,7 +1,6 @@
 import React, {useContext, createContext} from 'react';
 import {ethers} from 'ethers';
 import abi from '../context/abi.json';
-require('dotenv').config();
 
 
 const StateContext = createContext();
@@ -9,11 +8,11 @@ const StateContext = createContext();
 export const StateContextProvider = ({children}) => {
     const privateKey = process.env.PRIVATE_KEY;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = provider.getSigner();
 
     const wallet = new ethers.Wallet(privateKey, provider);
-    const walletAddress = wallet.getAddress();
+    const walletAddress = wallet.address;
 
     const contractAddress = process.env.CONTRACT_ADDRESS;
     const contractAbi = abi;
@@ -35,9 +34,15 @@ export const StateContextProvider = ({children}) => {
             console.error("Error in the publish campaign",error);
         }
     }
-    return <StateContext.provider value={{walletAddress,contractWithSigner,createCampaign : publishCampaign}}>
+    return <StateContext.Provider 
+    value={{
+        walletAddress,
+        contractWithSigner,
+        createCampaign : publishCampaign
+    }}
+    >
         {children}
-    </StateContext.provider>
+    </StateContext.Provider>
 
 }
 
