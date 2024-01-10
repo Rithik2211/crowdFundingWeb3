@@ -1,16 +1,18 @@
 import React,{useState, useEffect} from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import {ethers} from 'ethers';
+import { useNavigate } from 'react-router-dom';
+import {ethers} from 'ethers';
 import {dollar} from '../assets/index';
 import TextField from '@mui/material/TextField';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
+import { useStateContext } from '../context';
 
 function CreateCampaign() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { CreateCampaign} = useStateContext();
   const [form, setForm] = useState({
     name : '',
     title : '',
@@ -23,8 +25,9 @@ function CreateCampaign() {
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: fieldName !== "deadline" ? e.target.value : `${e.$D}/${e.$M+1}/${e.$y}` });
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     console.log("Form Submission",form)
   }
   return (
