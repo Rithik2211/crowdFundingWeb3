@@ -13,6 +13,9 @@ import money from './money.svg';
 import loader from './loader.svg';
 import thirdweb from './thirdweb.png';
 import dollar from './dollar.png';
+import nft from './nftImg.jpg';
+import arrowRight from './arrow.png';
+import banner from './banner1.png'
 
 export {
   tagType,
@@ -30,4 +33,7 @@ export {
   loader,
   thirdweb,
   dollar,
+  nft,
+  arrowRight,
+  banner,
 };

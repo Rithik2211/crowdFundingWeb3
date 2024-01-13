@@ -7,12 +7,12 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
-import { useStateContext } from '../context';
+// import { useStateContext } from '../context';
 
 function CreateCampaign() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { CreateCampaign} = useStateContext();
+  // const { CreateCampaign} = useStateContext();
   const [form, setForm] = useState({
     name : '',
     title : '',
@@ -27,8 +27,9 @@ function CreateCampaign() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form Submission",form);
     
-    console.log("Form Submission",form)
+    navigate("/");
   }
   return (
     <div className='flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>

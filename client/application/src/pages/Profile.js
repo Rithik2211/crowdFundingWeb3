@@ -1,9 +1,10 @@
 import React from 'react';
+import {banner} from '../assets/index';
 
 function Profile() {
   return (
     <div >
-      Profile
+      <img src={banner} alt="alt"/>
     </div>
   );
 }
