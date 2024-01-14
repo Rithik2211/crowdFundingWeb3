@@ -7,9 +7,9 @@ export const navlinks = [
     link: '/',
   },
   {
-    name: 'Campaign',
-    imgUrl: createCampaign,
-    link: '/CreateCampaign',
+    name: 'Profile',
+    imgUrl: profile,
+    link: '/profile',
   },
   {
     name: 'Payment',
@@ -22,11 +22,6 @@ export const navlinks = [
     imgUrl: withdraw,
     link: '/',
     disabled: true,
-  },
-  {
-    name: 'Profile',
-    imgUrl: profile,
-    link: '/profile',
   },
   {
     name: 'Logout',
