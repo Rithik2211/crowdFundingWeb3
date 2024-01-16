@@ -31,7 +31,7 @@ function Home() {
             A Decentralized web3 social media application for the seamless application for and security for the user.
           </Typography>
         </CardContent>
-        <CardActions className='flex justify-evenly'>
+        <CardActions className='flex justify-between flex-wrap mt-[15px] gap-2 ml-[20px] mr-[30px]'>
           <div className='flex flex-col gap-y-2'>
             <div className='flex justify-center'>{0.0}</div>
             <Typography variant="body2" color="text.secondary">Raised For 0.5</Typography>
