@@ -7,30 +7,31 @@ export const actions = {
     GET_DONATORS : "GET_DONATORS"
 }
 
-let structure = {
+let initialState = {
     campaignData : [],
     donatorsData : [],
     isActive : true
 }
 
-const campaignReducer = (state = structure, action) => {
-    switch(action.type){
-        case "CREATE_CAMPAIGNS" : 
-         return {...state, campaignData : [...state.campaignData, action.data ]};
-        case "DONATE_TO_CAMPAIGNS" : {
-
-        }
-        case "GET_CAMPAIGNS" : {
+const campaignReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "CREATE_CAMPAIGNS":
+            return {
+                ...state,
+                campaignData: [...state.campaignData, action.data]
+            };
+        case "DONATE_TO_CAMPAIGNS":
+            // Handle donation logic here
+            return state;
+        case "GET_CAMPAIGNS":
             return state.campaignData;
-        }
-        case "GET_DONATORS" : {
+        case "GET_DONATORS":
             return state.donatorsData;
-        }
-        default : 
-            return state; 
+        default:
+            return state;
     }
-}
+};
 
-const store = createStore(campaignReducer);
+const storeReducer = createStore(campaignReducer);
 
-export default store;
+export default storeReducer;

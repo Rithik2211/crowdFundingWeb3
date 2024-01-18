@@ -7,6 +7,8 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
+import { actions } from '../store/reducer';
+import { updateRedux } from '../store/utils';
 // import { useStateContext } from '../context';
 
 function CreateCampaign() {
@@ -28,7 +30,7 @@ function CreateCampaign() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submission",form);
-    
+    updateRedux(actions.CREATE_CAMPAIGNS, {data : form})
     navigate("/");
   }
   return (
