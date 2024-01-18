@@ -1,4 +1,5 @@
-import {createStore} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import {thunk} from 'redux-thunk';
 
 export const actions = {
     CREATE_CAMPAIGNS : "CREATE_CAMPAIGNS",
@@ -8,10 +9,10 @@ export const actions = {
 }
 
 let initialState = {
-    campaignData : [],
-    donatorsData : [],
-    isActive : true
-}
+    campaignData: [],
+    donatorsData: [],
+    isActive: true
+};
 
 const campaignReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -32,6 +33,6 @@ const campaignReducer = (state = initialState, action) => {
     }
 };
 
-const storeReducer = createStore(campaignReducer);
+const store = createStore(campaignReducer, applyMiddleware(thunk));
 
-export default storeReducer;
+export default store;

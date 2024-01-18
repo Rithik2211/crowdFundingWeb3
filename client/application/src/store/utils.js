@@ -1,6 +1,4 @@
-import storeReducer from "./reducer";
-
-let store = storeReducer();
+import store from "./reducer";
 
 export function updateRedux(type, action){
     store.dispatch({
@@ -12,9 +10,9 @@ export function updateRedux(type, action){
 export function getUpdatedRedux(key){
     switch(key){
         case 'getCampaigns': 
-            return store.getState()
+            return store.getState().campaignData;
         case 'getDonators':
-            return store.getState()
+            return store.getState().donatorsData;
         default : 
             return store.getState()
     }
