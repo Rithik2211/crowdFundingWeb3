@@ -19,7 +19,7 @@ const campaignReducer = (state = initialState, action) => {
         case "CREATE_CAMPAIGNS":
             return {
                 ...state,
-                campaignData: [...state.campaignData, action.data]
+                campaignData: [...state.campaignData, action.payload]
             };
         case "DONATE_TO_CAMPAIGNS":
             // Handle donation logic here

@@ -9,12 +9,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
 import { actions } from '../store/reducer';
 import { updateRedux } from '../store/utils';
-// import { useStateContext } from '../context';
 
 function CreateCampaign() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  // const { CreateCampaign} = useStateContext();
   const [form, setForm] = useState({
     name : '',
     title : '',

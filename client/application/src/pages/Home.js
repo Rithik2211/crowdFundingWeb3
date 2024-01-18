@@ -1,39 +1,47 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import {nft} from '../assets/index';
+import { getUpdatedRedux } from '../store/utils';
 
 function Home() {
   const navigate = useNavigate()
   const [data, setData] =  useState([]);
 
+  useEffect(()=>{
+    let stateData = getUpdatedRedux('getCampaigns');
+    console.log("@Home",stateData);
+    setData(stateData)
+  },[data]);
+
   return (
     <div className='flex flex-col p-[20px] gap-4'>
       <div>
-        <h1>All Campaigns ({data.length+1})</h1>
+        <h1>All Campaigns ({data.length})</h1>
       </div>
-      <>
-      <Card sx={{ maxWidth: 345 }} onClick={()=> navigate("/CampaignDetails")}>
+      <div className='flex flex-row p-[20px] gap-4'>
+      {data.map((card,index)=>{
+        return (
+        <Card sx={{ maxWidth: 345 }}  onClick={()=> navigate(`/CampaignDetails?index=${index}`)}>
         <CardMedia
           sx={{ height: 140 }}
-          image={nft}
+          image={card.image}
           title="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Green Web
+            {card.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            A Decentralized web3 social media application for the seamless application for and security for the user.
+            {card.description}
           </Typography>
         </CardContent>
         <CardActions className='flex justify-between flex-wrap mt-[15px] gap-2 ml-[20px] mr-[30px]'>
           <div className='flex flex-col gap-y-2'>
-            <div className='flex justify-center'>{0.0}</div>
+            <div className='flex justify-center'>{card.target}</div>
             <Typography variant="body2" color="text.secondary">Raised For 0.5</Typography>
           </div>
           <div className='flex flex-col gap-y-2'>
@@ -47,7 +55,9 @@ function Home() {
           </Typography>
         </CardContent>
       </Card>
-      </>
+        )
+      })}
+      </div>
     </div>
   );
 }

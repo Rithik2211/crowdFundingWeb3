@@ -3,7 +3,7 @@ import store from "./reducer";
 export function updateRedux(type, action){
     store.dispatch({
         type : type,
-        payload : action
+        payload : action.data
     })
 }
 
