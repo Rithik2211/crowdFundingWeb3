@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {arrowRight} from '../assets/index';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -15,10 +15,9 @@ function CampaignDetails() {
 
   const [listData, setListData] = useState({});
   const navigate = useNavigate()
-  const location = useLocation();
 
   useEffect(()=>{
-    const index = new URLSearchParams(location.search).get('index');
+    const index = new URLSearchParams(window.location.search).get('index');
     let stateData = getUpdatedRedux('getCampaigns');
     console.log("@Details Page",stateData);
     let actualData = stateData[index]

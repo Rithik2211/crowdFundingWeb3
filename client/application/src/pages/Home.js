@@ -6,15 +6,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { getUpdatedRedux } from '../store/utils';
+import { handleGetCampaigns } from '../context/fetchData';
+// import {config} from '../config';
 
 function Home() {
   const navigate = useNavigate()
   const [data, setData] =  useState([]);
 
   useEffect(()=>{
-    let stateData = getUpdatedRedux('getCampaigns');
-    console.log("@Home",stateData);
-    setData(stateData)
+    async function fetch(){
+      let stateData = getUpdatedRedux('getCampaigns');
+      let campaignData = await handleGetCampaigns();
+      console.log("@Home",stateData,campaignData);
+      console.log("@@private",process.env.PRIVATE_KEY);
+      setData(stateData)
+    }
+    fetch();
   },[data]);
 
   return (
