@@ -73,7 +73,7 @@ function ResponsiveAppBar() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        updateRedux('GET_ADDRESS',{data : accounts[0]})
+        updateRedux('GET_ADDRESS',{data : accounts[0]});
         setIsConnected(accounts[0]);
       } else {
         alert("Kindly install your wallet extension!!");
