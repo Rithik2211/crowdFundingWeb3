@@ -6,8 +6,8 @@ const privateKey = process.env.PRIVATE_KEY;
 const provider = new ethers.BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
 
-const wallet = new ethers.Wallet('019a170367f89ceb4a3aff3f97798b236b191ebf572b9d1261c711f815c95fb3', provider);
-const walletAddress = wallet.address;
+export const wallet = new ethers.Wallet("019a170367f89ceb4a3aff3f97798b236b191ebf572b9d1261c711f815c95fb3", provider);
+export const walletAddress = wallet.address;
 
 const contractAddress = "0x4E64af83F6F6C6163c70Ecd1DbA91c87B1C7Df2a";
 const contractAbi = '';

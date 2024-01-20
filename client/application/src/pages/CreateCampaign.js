@@ -9,7 +9,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
 import { actions } from '../store/reducer';
 import { updateRedux } from '../store/utils';
-import { publishCampaign } from '../context/fetchData';
+// import { publishCampaign } from '../context/fetchData';
 
 function CreateCampaign() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function CreateCampaign() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submission",form);
-    await publishCampaign(form)
+    // await publishCampaign(form)
     updateRedux(actions.CREATE_CAMPAIGNS, {data : form})
     navigate("/");
   }
