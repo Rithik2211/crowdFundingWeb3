@@ -14,13 +14,14 @@ function CampaignDetails() {
 
   const [listData, setListData] = useState({});
   const navigate = useNavigate()
+  const [address, setAddress] = useState(null);
 
   useEffect(()=>{
     const index = new URLSearchParams(window.location.search).get('index');
     let stateData = getUpdatedRedux('getCampaigns');
-    console.log("@Details Page",stateData);
-    let actualData = stateData[index]
-    setListData(actualData)
+    let wallet = getUpdatedRedux('getWalletAddress');
+    setAddress(wallet);
+    setListData(stateData[index]);
   },[]);
 
   return (
@@ -46,7 +47,7 @@ function CampaignDetails() {
             <Typography gutterBottom variant="h5" component="div">
             {listData.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography gutterBottom variant="h7" component="div">
             {listData.description}
             </Typography>
           </CardContent>
@@ -55,11 +56,11 @@ function CampaignDetails() {
         <Grid item xs={12}>
         <Card className='h-[28vh] m-4'>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-              {listData.title}
+              <Typography gutterBottom variant="h6" component="div">
+              Deadline Of The Project : {listData.deadline}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-              {listData.description}
+              <Typography gutterBottom variant="h6" component="div">
+              Wallet Address : {address}
               </Typography>
             </CardContent>
           </Card>

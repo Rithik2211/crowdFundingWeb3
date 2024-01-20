@@ -13,6 +13,8 @@ export function getUpdatedRedux(key){
             return store.getState().campaignData;
         case 'getDonators':
             return store.getState().donatorsData;
+        case 'getWalletAddress':
+            return store.getState().walletAddress;
         default : 
             return store.getState()
     }

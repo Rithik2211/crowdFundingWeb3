@@ -29,6 +29,11 @@ const campaignReducer = (state = initialState, action) => {
             return state.campaignData;
         case "GET_DONATORS":
             return state.donatorsData;
+        case "GET_ADDRESS":
+            return {
+                ...state,
+                walletAddress : action.payload
+            }    
         default:
             return state;
     }

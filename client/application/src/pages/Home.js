@@ -6,20 +6,18 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { getUpdatedRedux } from '../store/utils';
-import { walletAddress, wallet } from '../context/fetchData';
 // import { handleGetCampaigns } from '../context/fetchData';
-// import {config} from '../config';
 
 function Home() {
   const navigate = useNavigate()
   const [data, setData] =  useState([]);
+  const [address, setAddress] = useState(null);
 
   useEffect(()=>{
     async function fetch(){
       let stateData = getUpdatedRedux('getCampaigns');
-      // let campaignData = await handleGetCampaigns();
-      // console.log("@Home",stateData,campaignData);
-      console.log("@@Home",wallet);
+      let wallet = getUpdatedRedux('getWalletAddress');
+      setAddress(wallet)
       setData(stateData)
     }
     fetch();
@@ -59,7 +57,7 @@ function Home() {
         </CardActions>
         <CardContent>
         <Typography variant="body2" color="text.secondary">
-            By Address : {walletAddress}
+            By Address : {address}
           </Typography>
         </CardContent>
       </Card>

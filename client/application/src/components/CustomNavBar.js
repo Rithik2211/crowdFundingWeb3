@@ -15,6 +15,7 @@ import {useNavigate} from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { updateRedux } from '../store/utils';
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -72,6 +73,7 @@ function ResponsiveAppBar() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+        updateRedux('GET_ADDRESS',{data : accounts[0]})
         setIsConnected(accounts[0]);
       } else {
         alert("Kindly install your wallet extension!!");
