@@ -14,7 +14,7 @@ export const navlinks = [
   {
     name: 'Payment',
     imgUrl: payment,
-    link: '/',
+    link: '/Payment',
     disabled: true,
   },
   {
