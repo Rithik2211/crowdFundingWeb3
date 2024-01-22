@@ -4,8 +4,11 @@ import { updateEthers } from '../context/contractHandler';
 const Payments = () => {
     const [data, setData] = useState(null);
     useEffect(()=>{
-        const contract = updateEthers();
+        async function fetch(){
+        const contract = await updateEthers();
         console.log("@contract",contract);
+        }
+        fetch();
     },[]);
     return (
     <div>
