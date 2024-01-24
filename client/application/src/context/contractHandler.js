@@ -7,7 +7,7 @@ export const updateEthers = async() => {
         let provider = new BrowserProvider(window.ethereum);
         let signer = await provider.getSigner();
         let contractSigner = new Contract(contractAddress, abi, signer);
-        return contractSigner;
+        return await contractSigner.handleGetDonators(0);
     }
     catch(error){
         console.log("updatedEthers",error);

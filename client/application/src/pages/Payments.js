@@ -6,10 +6,14 @@ const Payments = () => {
     useEffect(()=>{
         async function fetch(){
         const contract = await updateEthers();
+        // let tempData = await contract.handleGetDonators();
+        // setData(tempData);
         console.log("@contract",contract);
         }
         fetch();
     },[]);
+
+      console.log("data",data)
     return (
     <div>
         <h1>Payments Page</h1>
