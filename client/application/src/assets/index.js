@@ -16,6 +16,7 @@ import dollar from './dollar.png';
 import nft from './nftImg.jpg';
 import arrowRight from './arrow.png';
 import banner from './banner1.png'
+import avatar from './avatar.gif';
 
 export {
   tagType,
@@ -36,4 +37,5 @@ export {
   nft,
   arrowRight,
   banner,
+  avatar
 };

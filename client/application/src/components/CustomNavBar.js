@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { updateRedux } from '../store/utils';
+import { avatar } from '../assets';
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -121,7 +122,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={avatar} />
                 </IconButton>
               </Tooltip>
               <Menu
