@@ -9,7 +9,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from '@mui/material/Button';
 import { actions } from '../store/reducer';
 import { updateRedux } from '../store/utils';
-// import { publishCampaign } from '../context/fetchData';
+import { contractFuctions } from '../context/contractHandler';
+import {Contract} from 'ethers';
+import abi from '../context/abi.json';
+import { Web3Provider } from '@ethersproject/providers';
 
 function CreateCampaign() {
   const navigate = useNavigate();
@@ -22,14 +25,32 @@ function CreateCampaign() {
     deadline : '',
     image : ''
   })
+  const [contractInstance, setContractInstance] = useState({});
+
+  const contractAddress = '0x4E64af83F6F6C6163c70Ecd1DbA91c87B1C7Df2a';
+
+  useEffect(()=>{
+    async function setup(){
+      try{
+        let provider = new Web3Provider(window.ethereum);
+        let signer = await provider.getSigner();
+        let contractSigner = new Contract(contractAddress, abi, signer);
+        setContractInstance({signer, contractSigner})
+    }
+    catch(error){
+        console.log("updatedEthers",error);
+    }
+    }
+    setup();
+  },[]);
 
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: fieldName !== "deadline" ? e.target.value : `${e.$D}/${e.$M+1}/${e.$y}` });
   }
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submission",form);
-    // await publishCampaign(form)
+    contractFuctions.handleCreateCampaigns(contractInstance, form);
     updateRedux(actions.CREATE_CAMPAIGNS, {data : form})
     navigate("/");
   }

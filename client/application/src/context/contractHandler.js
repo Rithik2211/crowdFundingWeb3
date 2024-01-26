@@ -1,15 +1,32 @@
-import {ethers, Web3Provider, Contract} from 'ethers';
-import abi from './abi.json';
+import { parseEther } from 'ethers';
 
-const contractAddress = '0x4E64af83F6F6C6163c70Ecd1DbA91c87B1C7Df2a';
-export const updateEthers = async() => {
-    try{
-        let provider = new Web3Provider(window.ethereum);
-        let signer = await provider.getSigner();
-        let contractSigner = new Contract(contractAddress, abi, signer);
-        let contract = await contractSigner.handleGetDonators(0);
-    }
-    catch(error){
-        console.log("updatedEthers",error);
+export const contractFuctions = {
+    handleCreateCampaigns : async(instance, form)=> {
+        try{
+            const {signer, contractSigner} = instance;
+            const signerAdd = await signer.getAddress();
+            const campaignId = await contractSigner.createCampaign(
+                signerAdd,
+                form.title,
+                form.description,
+                parseEther(form.target),
+                Math.floor((new Date(form.deadline)).getTime() / 1000),
+                parseEther('0'),
+                form.image,
+            );
+            console.log("New campaign created with ID:", campaignId);
+        }
+        catch(err){
+            console.log("Error in Creating Campaign",err);
+        }
+    },
+    handleDonateToCampaigns : async() => {
+
+    },
+    handleGetDonators : async() => {
+
+    },
+    handleGetCampaigns : async() => {
+
     }
 }
