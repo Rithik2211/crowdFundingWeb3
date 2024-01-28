@@ -26,7 +26,7 @@ function CreateCampaign() {
   })
   const [contractInstance, setContractInstance] = useState({});
 
-  const contractAddress = '0x4E64af83F6F6C6163c70Ecd1DbA91c87B1C7Df2a';
+  const contractAddress = '0x626404E58bf26202DAd1FcE19bfab45B98806cFC';
 
   useEffect(()=>{
     async function setup(){
