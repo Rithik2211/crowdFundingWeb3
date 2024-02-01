@@ -27,7 +27,7 @@ function Home() {
       <div>
         <h1>All Campaigns ({data.length})</h1>
       </div>
-      <div className='grid grid-cols-3 grid-flow-row gap-4'>
+      <div className='flex flex-row flex-wrap  w-[100%] gap-4'>
       {data.map((card,index)=>{
         return (
         <Card sx={{ maxWidth: 345 }}  onClick={()=> navigate(`/CampaignDetails?index=${index}`)}>
