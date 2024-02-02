@@ -46,10 +46,10 @@ function CreateCampaign() {
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: fieldName !== "deadline" ? e.target.value : `${e.$D}/${e.$M+1}/${e.$y}` });
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Form Submission",form);
-    contractFuctions.handleCreateCampaigns(contractInstance, form);
+    await contractFuctions.handleCreateCampaigns(contractInstance, form);
     updateRedux(actions.CREATE_CAMPAIGNS, {data : form})
     navigate("/");
   }
@@ -60,21 +60,21 @@ function CreateCampaign() {
         <h1 className='font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white'>Create a Campaign</h1>
       </div>
       <form onSubmit={handleSubmit} className='w-full mt-[65px] flex flex-col gap-[30px]'>
-        <div className='flex text-white space-around gap-[40px]' >
-          <TextField id="outlined-basic" label="Name" placeholder="Write your Name" variant="outlined" sx={{width:"600px"}} onChange={(e)=>handleFormFieldChange("name",e)}/>
-          <TextField id="outlined-basic" label="Title" placeholder="Write a Title" variant="outlined" sx={{width:"600px"}} onChange={(e)=>handleFormFieldChange("title",e)}/>
+        <div className='flex w-[100%] flex-row flex-wrap gap-[40px] justify-around' >
+          <TextField sx={{width:"500px"}} id="outlined-basic" label="Name" placeholder="Write your Name" variant="outlined"  onChange={(e)=>handleFormFieldChange("name",e)}/>
+          <TextField sx={{width:"500px"}} id="outlined-basic" label="Title" placeholder="Write a Title" variant="outlined" onChange={(e)=>handleFormFieldChange("title",e)}/>
         </div>  
         <TextField id="outlined-textarea" label="Story" placeholder="Write a Story" multiline onChange={(e)=>handleFormFieldChange("description",e)}/>
         <div className='flex  gap-[20px] justify-center items-center p-4 bg-[#8c6dfd] rounded-[10px]'>
           <img src={dollar} alt="money" className='w-[40px] h-[40px] object-contain' />
           <h4>You will get 100% of the raised amount!</h4>
         </div>
-        <div className='flex text-white sm:flex-row flex-col gap-[40px]' style={{justifyContent:"space-around"}}>
-          <TextField sx={{width:"400px"}} id="outlined-basic" label="Goal" placeholder="0.50 ETH" variant="outlined" onChange={(e)=>handleFormFieldChange("target",e)}/>
+        <div className='flex w-[100%] flex-row flex-wrap gap-[40px] justify-around'>
+          <TextField sx={{width:"350px"}} id="outlined-basic" label="Goal" placeholder="0.50 ETH" variant="outlined" onChange={(e)=>handleFormFieldChange("target",e)}/>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker sx={{width:"400px"}} label="End Date" onChange={(date) => { handleFormFieldChange("deadline", date) }}/>
+            <DatePicker sx={{width:"350px"}} label="End Date" onChange={(date) => { handleFormFieldChange("deadline", date) }}/>
           </LocalizationProvider>
-          <TextField sx={{width:"400px"}} id="outlined-basic" label="Campaign Image" placeholder="Place Your Image Url" variant="outlined"  onChange={(e)=>handleFormFieldChange("image",e)}/>
+          <TextField sx={{width:"350px"}} id="outlined-basic" label="Campaign Image" placeholder="Place Your Image Url" variant="outlined"  onChange={(e)=>handleFormFieldChange("image",e)}/>
         </div> 
         <div className='flex justify-center items-center mt-[40px]'>
           <Button type="submit" variant="contained">Submit New Campaign</Button>
